@@ -58,16 +58,18 @@ function sendRawFirepad(response, path) {
 
    var rootRef = firebase.database().ref();
    var firepadRef = rootRef.ref("/f/" + id + "/");
+   console.log(id);
+   console.log(path);
    var headless = new Firepad.Headless(firepadRef);
    
-   headless.getText(function(text) {
+   //headless.getText(function(text) {
       //console.log("Contents of firepad retrieved: " + text);
       
       response.writeHead(200, {
          "Content-type": "text/html"
       });
       response.end("Techedit Raw File Path<br>Path: " + path + "<br>Id: " + id);
-   });
+   //});
    headless.dispose();
 
 }
