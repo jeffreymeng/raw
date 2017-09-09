@@ -87,8 +87,8 @@ function sendPage(response, filePath, fileContents) {
 
 function serverWorking(response, absPath) {
    //techedit
-   if (new Regex(/\/techedit\/f\/.+/g).test(absPath)) {
-      sendRawFirepad(response, absPath)
+   if (new regex(/\/techedit\/f\/.+/g).test(absPath)) {
+      sendRawFirepad(response, absPath);
    }
    else {
       fs.exists(absPath, function(exists) {
