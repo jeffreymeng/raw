@@ -1,10 +1,13 @@
 {
-  "name" : "jeffkmeng",
-  "version" : "0.0.1",
-  "description" : "Node.js Test",
-  "repository":"https://github.com/jeffreymeng/nodejs",
-  "license":"UNLICENSED",
-  "dependencies" : {
-    "mime" : "~1.2.7"
+  "name": "jeffkmeng",
+  "version": "0.0.1",
+  "description": "Node.js Test",
+  "repository": "https://github.com/jeffreymeng/nodejs",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "firebase": "^4.3.1",
+    "firepad": "^1.4.0",
+    "mime": "~1.2.7",
+    "regex": "^0.1.1"
   }
 }

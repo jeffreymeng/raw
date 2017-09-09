@@ -2,6 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const mime = require("mime");
+const regex = require("regex");
 
 //plaintext 404 or 404 html page.
 const html404 = true;
@@ -38,6 +39,39 @@ function send404(response) {
    }
 }
 
+function sendRawFirepad(response, path) {
+   var Firepad = require('firepad');
+   var firebase = require('firebase');
+   var id = path.split("/")[3];
+   
+   // Initialize Firebase.
+
+   var config = {
+      apiKey: "AIzaSyBQ2E4ISQoIcRsDxfPxzDjbJwmD-r98JYw",
+      authDomain: "techedit-63e7f.firebaseapp.com",
+      databaseURL: "https://techedit-63e7f.firebaseio.com",
+      projectId: "techedit-63e7f",
+      storageBucket: "techedit-63e7f.appspot.com",
+      messagingSenderId: "609280907475"
+   };
+   firebase.initializeApp(config);
+
+   var rootRef = firebase.database().ref();
+   var firepadRef = rootRef.ref("/f/" + id + "/");
+   var headless = new Firepad.Headless(firepadRef);
+   
+   headless.getText(function(text) {
+      //console.log("Contents of firepad retrieved: " + text);
+      
+      response.writeHead(200, {
+         "Content-type": "text/html"
+      });
+      response.end("Techedit Raw File Path<br>Path: " + path + "<br>Id: " + id);
+   });
+   headless.dispose();
+
+}
+
 function sendPage(response, filePath, fileContents) {
    response.writeHead(200, {
       "Content-type": mime.lookup(path.basename(filePath))
@@ -46,21 +80,27 @@ function sendPage(response, filePath, fileContents) {
 }
 
 function serverWorking(response, absPath) {
-   fs.exists(absPath, function(exists) {
-      if (exists) {
-         fs.readFile(absPath, function(err, data) {
-            if (err) {
-               send404(response);
-            }
-            else {
-               sendPage(response, absPath, data);
-            }
-         });
-      }
-      else {
-         send404(response);
-      }
-   });
+   //techedit
+   if (new Regex(/\/techedit\/f\/.+/g).test(absPath)) {
+      sendRawFirepad(response, absPath)
+   }
+   else {
+      fs.exists(absPath, function(exists) {
+         if (exists) {
+            fs.readFile(absPath, function(err, data) {
+               if (err) {
+                  send404(response);
+               }
+               else {
+                  sendPage(response, absPath, data);
+               }
+            });
+         }
+         else {
+            send404(response);
+         }
+      });
+   }
 }
 var server = http.createServer(function(request, response) {
    var filePath = false;
