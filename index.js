@@ -40,6 +40,7 @@ function send404(response) {
 }
 
 function sendRawFirepad(response, path) {
+   /*
    var Firepad = require('firepad');
    var firebase = require('firebase');
    var id = path.split("/")[3];
@@ -58,8 +59,10 @@ function sendRawFirepad(response, path) {
 
    var rootRef = firebase.database().ref();
    var firepadRef = rootRef.ref("/f/" + id + "/");
+   */
    console.log(id);
    console.log(path);
+   /*
    var headless = new Firepad.Headless(firepadRef);
    
    //headless.getText(function(text) {
@@ -71,6 +74,7 @@ function sendRawFirepad(response, path) {
       response.end("Techedit Raw File Path<br>Path: " + path + "<br>Id: " + id);
    //});
    headless.dispose();
+   */
 
 }
 
