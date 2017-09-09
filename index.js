@@ -40,7 +40,7 @@ function send404(response) {
 }
 
 function sendRawFirepad(response, path) {
-   /*
+   
    var Firepad = require('firepad');
    var firebase = require('firebase');
    var id = path.split("/")[3];
@@ -59,7 +59,7 @@ function sendRawFirepad(response, path) {
 
    var rootRef = firebase.database().ref();
    var firepadRef = rootRef.ref("/f/" + id + "/");
-   */
+   
    console.log(id);
    console.log(path);
    /*
@@ -87,6 +87,7 @@ function sendPage(response, filePath, fileContents) {
 
 function serverWorking(response, absPath) {
    //techedit
+   console.log(new regex(/\/techedit\/f\/.+/g).test(absPath));
    if (new regex(/\/techedit\/f\/.+/g).test(absPath)) {
       sendRawFirepad(response, absPath);
    }
