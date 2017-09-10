@@ -55,15 +55,15 @@ function sendRawFirepad(response, path) {
       storageBucket: "techedit-63e7f.appspot.com",
       messagingSenderId: "609280907475"
    };
-   firebase.initializeApp(config);
+   //firebase.initializeApp(config);
 
-   var rootRef = firebase.database().ref();
-   var firepadRef = rootRef.ref("/f/" + id + "/");
+   //var rootRef = firebase.database().ref();
+   //var firepadRef = rootRef.ref("/f/" + id + "/");
    
-   console.log(id);
-   console.log(path);
+   //console.log(id);
+   //console.log(path);
    
-   var headless = new Firepad.Headless(firepadRef);
+   //var headless = new Firepad.Headless(firepadRef);
    
    //headless.getText(function(text) {
       //console.log("Contents of firepad retrieved: " + text);
@@ -73,7 +73,7 @@ function sendRawFirepad(response, path) {
       });
       response.end("Techedit Raw File Path<br>Path: " + path + "<br>Id: " + id + "<br>text here soon");
    //});
-   headless.dispose();
+   //headless.dispose();
    
 
 }
