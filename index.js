@@ -87,6 +87,8 @@ function sendPage(response, filePath, fileContents) {
 
 function serverWorking(response, absPath) {
    //techedit
+   console.log("CHECKPOINT LOG");
+   console.log(absPath);
    console.log(new regex(/\/techedit\/f\/.+/g).test(absPath));
    if (new regex(/\/techedit\/f\/.+/g).test(absPath)) {
       sendRawFirepad(response, absPath);
