@@ -62,7 +62,7 @@ function sendRawFirepad(response, path) {
    
    console.log(id);
    console.log(path);
-   /*
+   
    var headless = new Firepad.Headless(firepadRef);
    
    //headless.getText(function(text) {
@@ -71,10 +71,10 @@ function sendRawFirepad(response, path) {
       response.writeHead(200, {
          "Content-type": "text/html"
       });
-      response.end("Techedit Raw File Path<br>Path: " + path + "<br>Id: " + id);
+      response.end("Techedit Raw File Path<br>Path: " + path + "<br>Id: " + id + "<br>text here soon");
    //});
    headless.dispose();
-   */
+   
 
 }
 
